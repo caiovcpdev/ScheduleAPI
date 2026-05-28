@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "ScheduleAPI.Application/1.0.0": {
+        "dependencies": {
+          "ScheduleAPI.Domain": "1.0.0"
+        },
+        "runtime": {
+          "ScheduleAPI.Application.dll": {}
+        }
+      },
+      "ScheduleAPI.Domain/1.0.0": {
+        "runtime": {
+          "ScheduleAPI.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ScheduleAPI.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ScheduleAPI.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

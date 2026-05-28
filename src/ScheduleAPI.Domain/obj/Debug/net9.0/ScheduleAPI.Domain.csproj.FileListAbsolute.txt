@@ -1,0 +1,11 @@
+C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Domain\bin\Debug\net9.0\ScheduleAPI.Domain.deps.json
+C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Domain\bin\Debug\net9.0\ScheduleAPI.Domain.dll
+C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Domain\bin\Debug\net9.0\ScheduleAPI.Domain.pdb
+C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Domain\obj\Debug\net9.0\ScheduleAPI.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Domain\obj\Debug\net9.0\ScheduleAPI.Domain.AssemblyInfoInputs.cache
+C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Domain\obj\Debug\net9.0\ScheduleAPI.Domain.AssemblyInfo.cs
+C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Domain\obj\Debug\net9.0\ScheduleAPI.Domain.csproj.CoreCompileInputs.cache
+C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Domain\obj\Debug\net9.0\ScheduleAPI.Domain.dll
+C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Domain\obj\Debug\net9.0\refint\ScheduleAPI.Domain.dll
+C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Domain\obj\Debug\net9.0\ScheduleAPI.Domain.pdb
+C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Domain\obj\Debug\net9.0\ref\ScheduleAPI.Domain.dll
