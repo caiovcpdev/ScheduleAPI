@@ -1,0 +1,223 @@
+[
+  {
+    "ContainingType": "ScheduleAPI.API.Controllers.AgendamentosController",
+    "Method": "ObterTodos",
+    "RelativePath": "api/Agendamentos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ScheduleAPI.API.Controllers.AgendamentosController",
+    "Method": "Criar",
+    "RelativePath": "api/Agendamentos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ScheduleAPI.Application.DTOs.Agendamento.AgendamentoRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ScheduleAPI.API.Controllers.AgendamentosController",
+    "Method": "ObterPorId",
+    "RelativePath": "api/Agendamentos/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ScheduleAPI.API.Controllers.AgendamentosController",
+    "Method": "Cancelar",
+    "RelativePath": "api/Agendamentos/{id}/cancelar",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ScheduleAPI.API.Controllers.AgendamentosController",
+    "Method": "Confirmar",
+    "RelativePath": "api/Agendamentos/{id}/confirmar",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ScheduleAPI.API.Controllers.ClientesController",
+    "Method": "ObterTodos",
+    "RelativePath": "api/Clientes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ScheduleAPI.API.Controllers.ClientesController",
+    "Method": "Criar",
+    "RelativePath": "api/Clientes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ScheduleAPI.Application.DTOs.Cliente.ClienteRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ScheduleAPI.API.Controllers.ClientesController",
+    "Method": "ObterPorId",
+    "RelativePath": "api/Clientes/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ScheduleAPI.API.Controllers.ClientesController",
+    "Method": "Atualizar",
+    "RelativePath": "api/Clientes/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "ScheduleAPI.Application.DTOs.Cliente.ClienteRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ScheduleAPI.API.Controllers.ProfissionaisController",
+    "Method": "ObterTodos",
+    "RelativePath": "api/Profissionais",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ScheduleAPI.API.Controllers.ProfissionaisController",
+    "Method": "Criar",
+    "RelativePath": "api/Profissionais",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ScheduleAPI.Application.DTOs.Profissional.ProfissionalRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ScheduleAPI.API.Controllers.ProfissionaisController",
+    "Method": "ObterPorId",
+    "RelativePath": "api/Profissionais/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ScheduleAPI.API.Controllers.ServicosController",
+    "Method": "ObterTodos",
+    "RelativePath": "api/Servicos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ScheduleAPI.API.Controllers.ServicosController",
+    "Method": "Criar",
+    "RelativePath": "api/Servicos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ScheduleAPI.Application.DTOs.Servico.ServicoRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ScheduleAPI.API.Controllers.ServicosController",
+    "Method": "ObterPorId",
+    "RelativePath": "api/Servicos/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

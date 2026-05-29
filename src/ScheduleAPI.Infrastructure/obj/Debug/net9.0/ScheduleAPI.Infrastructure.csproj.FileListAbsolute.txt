@@ -17,3 +17,4 @@ C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Infrastructure\obj\Debug\net
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Infrastructure\obj\Debug\net9.0\ScheduleAPI.Infrastructure.pdb
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Infrastructure\obj\Debug\net9.0\ScheduleAPI.Infrastructure.genruntimeconfig.cache
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Infrastructure\obj\Debug\net9.0\ref\ScheduleAPI.Infrastructure.dll
+C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Infrastructure\obj\Debug\net9.0\ScheduleAPI.Infrastructure.sourcelink.json

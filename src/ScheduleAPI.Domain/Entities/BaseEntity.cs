@@ -11,5 +11,10 @@ namespace ScheduleAPI.Domain.Entities
         public Guid Id { get; set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime? UpdatedAt { get; protected set; }
+
+        protected BaseEntity()
+        {
+            CreatedAt = DateTime.UtcNow;
+        }
     }
 }

@@ -45,7 +45,7 @@ namespace ScheduleAPI.Infrastructure.Repositories
         public async Task<IEnumerable<Agendamento>> ObterPorProfissionalAsync(Guid profissionalId, DateTime data)
             => await _context.Agendamentos
                 .Where( a => a.ProfissionalId == profissionalId
-                        && a.DataHorarioInicio == data.Date
+                        && a.DataHoraInicio == data.Date
                         && a.Status != StatusAgendamento.Cancelado)
                 .ToListAsync();
 
@@ -55,7 +55,7 @@ namespace ScheduleAPI.Infrastructure.Repositories
                     a.ProfissionalId == profissionalId &&
                     a.Status != StatusAgendamento.Cancelado &&
                     (ignorarId == null || a.Id != ignorarId) &&
-                    a.DataHorarioInicio < fim &&
-                    a.DataHorarioFim > inicio);
+                    a.DataHoraInicio < fim &&
+                    a.DataHoraFim > inicio);
     }
 }

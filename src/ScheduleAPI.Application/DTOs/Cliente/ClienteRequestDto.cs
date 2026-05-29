@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ScheduleAPI.Application.DTOs.Cliente
 {
-    public record ClientRequestDto(
+    public record ClienteRequestDto(
         string Nome,
         string Email,
         string Telefone

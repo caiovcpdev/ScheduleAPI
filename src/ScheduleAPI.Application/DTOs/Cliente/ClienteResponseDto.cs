@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ScheduleAPI.Application.DTOs.Cliente
 {
-    internal class ClienteResponseDto
-    {
-    }
+    public record ClienteResponseDto(
+        Guid  Id,
+        string Nome,
+        string Email,
+        string Telefone,
+        DateTime CreatedAt
+    );
 }

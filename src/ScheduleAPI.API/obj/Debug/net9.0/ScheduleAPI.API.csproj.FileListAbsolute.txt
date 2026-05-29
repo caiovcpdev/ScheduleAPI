@@ -142,7 +142,6 @@ C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\Schedul
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\ScheduleAPI.API.AssemblyInfoInputs.cache
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\ScheduleAPI.API.AssemblyInfo.cs
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\ScheduleAPI.API.csproj.CoreCompileInputs.cache
-C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\ScheduleAPI.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\ScheduleAPI.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\rjimswa.dswa.cache.json
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
@@ -158,3 +157,5 @@ C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\refint\
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\ScheduleAPI.API.pdb
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\ScheduleAPI.API.genruntimeconfig.cache
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\ref\ScheduleAPI.API.dll
+C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\ScheduleAPI.API.sourcelink.json
+C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

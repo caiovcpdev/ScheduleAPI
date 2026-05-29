@@ -13,3 +13,4 @@ C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Application\obj\Debug\net9.0
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Application\obj\Debug\net9.0\refint\ScheduleAPI.Application.dll
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Application\obj\Debug\net9.0\ScheduleAPI.Application.pdb
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Application\obj\Debug\net9.0\ref\ScheduleAPI.Application.dll
+C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.Application\obj\Debug\net9.0\ScheduleAPI.Application.sourcelink.json
