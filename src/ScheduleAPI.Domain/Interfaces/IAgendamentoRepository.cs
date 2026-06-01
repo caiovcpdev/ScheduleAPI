@@ -15,5 +15,9 @@ namespace ScheduleAPI.Infrastructure.Interfaces
         Task<bool> ExisteConflitoAsync(Guid profissionalId, DateTime inicio, DateTime fim, Guid? ignorarId = null);
         Task AdicionaAsync(Agendamento agendamento);
         Task AtualizarAsync(Agendamento agendamento);
+        Task<IEnumerable<Agendamento>> ObterAgendamentosConfirmadosDoDia(Guid profissionalId, DateTime data);
+
+        //Metodo para lembretes
+        Task<IEnumerable<Agendamento>> ObterAgendamentosDeAmanha();
     }
 }

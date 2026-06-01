@@ -11,7 +11,7 @@ namespace ScheduleAPI.Infrastructure.Repositories
 
         public AgendamentoRepository(AppDbContext context)
         {
-               context = _context ?? throw new ArgumentNullException(nameof(context));
+            _context = context  ?? throw new ArgumentNullException(nameof(context));
         }
 
         public async Task AdicionaAsync(Agendamento agendamento)
@@ -57,5 +57,26 @@ namespace ScheduleAPI.Infrastructure.Repositories
                     (ignorarId == null || a.Id != ignorarId) &&
                     a.DataHoraInicio < fim &&
                     a.DataHoraFim > inicio);
+
+        public async Task<IEnumerable<Agendamento>> ObterAgendamentosDeAmanha() 
+        {
+            var amanha = DateTime.UtcNow.AddDays(1);
+
+            return await _context.Agendamentos
+                .Include(a => a.Cliente)
+                .Include(a => a.Profissional)
+                .Include(a => a.Servico)
+                .Where(a => a.DataHoraInicio.Date == amanha.Date && a.Status != StatusAgendamento.Cancelado) //posteriormente buscar apenas os agendamento com status confirmado
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Agendamento>> ObterAgendamentosConfirmadosDoDia(Guid profissionalId, DateTime data)
+            => await _context.Agendamentos
+                .Include(a => a.Servico)
+                .Where( a =>
+                        a.ProfissionalId == profissionalId &&
+                        a.DataHoraInicio.Date == data.Date &&
+                        a.Status != StatusAgendamento.Cancelado)
+                .ToListAsync();
     }
 }

@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using ScheduleAPI.Application.Interfaces;
 using ScheduleAPI.Application.Service;
+using ScheduleAPI.Infrastructure.BackgroundServices;
 using ScheduleAPI.Infrastructure.Data;
+using ScheduleAPI.Infrastructure.Email;
 using ScheduleAPI.Infrastructure.Interfaces;
 using ScheduleAPI.Infrastructure.Repositories;
 
@@ -18,11 +20,20 @@ builder.Services.AddScoped<IProfissionalRepository, ProfissionalRepository>();
 builder.Services.AddScoped<IServicoRepository, ServicoRepository>();
 builder.Services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();
 
-//services
+//Services
 builder.Services.AddScoped<IClienteSerivce, ClienteService>();
 builder.Services.AddScoped<IProfissionalService, ProfissionalService>();
 builder.Services.AddScoped<IServicoService, ServicoService>();
 builder.Services.AddScoped<IAgendamentoSerivce, AgendamentoService>();
+
+//E-mail
+builder.Services.Configure<EmailSettings>(
+    builder.Configuration.GetSection("EmailSettings"));
+
+builder.Services.AddScoped<IEmailService, SmtpEmailService>();
+
+// Background Service para envio de lembretes 
+//builder.Services.AddHostedService<LembreteBackgroundService>();  //Ativar depois de configurar o SMTP
 
 
 var app = builder.Build();

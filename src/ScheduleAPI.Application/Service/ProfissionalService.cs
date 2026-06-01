@@ -14,8 +14,13 @@ namespace ScheduleAPI.Application.Service
     public class ProfissionalService : IProfissionalService 
     {
         private readonly IProfissionalRepository _repository;
+        private readonly IAgendamentoRepository _agendamentoRepository;
 
-        public ProfissionalService(IProfissionalRepository repository) => _repository = repository;
+        public ProfissionalService(IProfissionalRepository repository, IAgendamentoRepository agendamentoRepository) 
+        { 
+            _repository = repository; 
+            _agendamentoRepository = agendamentoRepository;
+        } 
 
         public async Task<ProfissionalResponseDto> CriarAsync(ProfissionalRequestDto dto)
         {
@@ -37,6 +42,46 @@ namespace ScheduleAPI.Application.Service
             return profissionais.Select(ToDto);
         }
 
+        public async Task<DisponibilidadeResponseDto> ObterDisponibilidadeAsync(Guid profissionalId, DateTime data, int intervaloEmMinutos = 30)
+        {
+            //Valida se o profissional existe
+            var profissional = await _repository.ObterPorIdAsync(profissionalId) ?? throw new KeyNotFoundException("Profissional não encontrado.");
+
+            //Não é possível consultar disponibilidade para datas passadas
+            if (data.Date < DateTime.UtcNow.Date)
+                throw new ArgumentException("Não é possível consultar disponibilidade para datas passadas.");
+
+            //Busca agendamentos confirmados do dia para o profissional
+            var agendamentos = await _agendamentoRepository.ObterAgendamentosConfirmadosDoDia(profissionalId, data);
+
+            var slots = new List<SlotDisponivel>();
+            var slotAtual = profissional.InicioExpediente;
+
+            while (slotAtual.Add(TimeSpan.FromMinutes(intervaloEmMinutos)) <= profissional.FimExpediente)
+            {
+                var slotFim = slotAtual.Add(TimeSpan.FromMinutes(intervaloEmMinutos));
+
+                //Verifica se o slot atual está ocupado por algum agendamento
+                var ocupado = agendamentos.Any(a =>
+                    a.DataHoraInicio.TimeOfDay < slotFim && 
+                    a.DataHoraFim.TimeOfDay > slotAtual
+                );
+
+                slots.Add(new SlotDisponivel(slotAtual, slotFim, !ocupado));
+
+                slotAtual = slotFim;
+            }
+
+            return new DisponibilidadeResponseDto(
+                profissional.Id,
+                profissional.Nome,
+                data,
+                profissional.InicioExpediente,
+                profissional.FimExpediente,
+                slots
+            );
+
+        }
         private static ProfissionalResponseDto ToDto(Profissional p) => new(p.Id, p.Nome, p.Email, p.Especialidade, p.InicioExpediente, p.FimExpediente);
     }
 }

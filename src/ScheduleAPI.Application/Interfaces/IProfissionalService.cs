@@ -7,6 +7,7 @@ namespace ScheduleAPI.Application.Interfaces
         Task<IEnumerable<ProfissionalResponseDto>> ObterTodosAsync();
         Task<ProfissionalResponseDto?> ObterPorIdAsync(Guid id);
         Task<ProfissionalResponseDto> CriarAsync(ProfissionalRequestDto dto);
+        Task<DisponibilidadeResponseDto> ObterDisponibilidadeAsync(Guid id, DateTime data, int intervaloEmMinutos = 30);
         //Task<ProfissionalResponseDto> AtualizarAsync(Guid id, ProfissionalResponseDto dto);
     }
 }

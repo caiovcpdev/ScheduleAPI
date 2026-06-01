@@ -25,6 +25,13 @@ namespace ScheduleAPI.API.Controllers
             return profissional is null ? NotFound() : Ok(profissional);
         }
 
+        [HttpGet("{id:guid}/disponibilidade")]
+        public async Task<IActionResult> ObterDisponibilidade(Guid id, [FromQuery] DateTime data, [FromQuery] int intervalo = 30)
+        {
+            var disponibilidade = await _service.ObterDisponibilidadeAsync(id, data, intervalo);
+            return disponibilidade is null ? NotFound() : Ok(disponibilidade);
+        }
+
         public async Task<IActionResult> Criar([FromBody] ProfissionalRequestDto dto)
         {
             var profissional = await _service.CriarAsync(dto);
