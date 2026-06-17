@@ -10,6 +10,8 @@ namespace ScheduleAPI.Infrastructure.Interfaces
     public interface IClienteRepository
     {
         Task<Cliente?> ObterPorIdAsync(Guid id);
+
+        Task<Cliente?> ObterPorEmailAsync(string email);
         Task<IEnumerable<Cliente>> ObterTodosAsync();
         Task AdicionarAsync(Cliente cliente);
         Task AtualizarAsync(Cliente cliente);

@@ -38,8 +38,14 @@ namespace ScheduleAPI.Application.Service
             var clientes = await _repository.ObterTodosAsync();
             return clientes.Select(ToDto);
         }
+        public async Task<ClienteResponseDto?> ObterPorEmailAsync(string email)
+        {
+            var cliente = await _repository.ObterPorEmailAsync(email);
+            return ToDto(cliente);
+        }
 
         // Metodo auxiliar para converter Cliente para ClienteResponseDto
         private static ClienteResponseDto ToDto(Cliente c) => new(c.Id, c.Nome, c.Email, c.Telefone, c.CreatedAt);
+
     }
 }

@@ -15,14 +15,21 @@ namespace ScheduleAPI.API.Controllers
         public async Task<IActionResult> ObterTodos()
         {
             var clientes = await _service.ObterTodosAsync();
-            return clientes is null ? NotFound() : Ok(clientes);
+            return Ok(clientes);
         }
 
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> ObterPorId(Guid id)
         {
             var cliente = await _service.ObterPorIdAsync(id);
-            return cliente is null ? NotFound() : Ok(cliente);
+            return Ok(cliente);
+        }
+
+        [HttpGet("por-email")]
+        public async Task<IActionResult> ObterPorEmailAsync([FromQuery] string email)
+        {
+            var cliente = await _service.ObterPorEmailAsync(email);
+            return Ok(cliente);
         }
 
         [HttpPost]

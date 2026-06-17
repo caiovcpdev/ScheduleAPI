@@ -12,6 +12,7 @@ namespace ScheduleAPI.Domain.Entities
         public string Descricao { get; private set; } = string.Empty;
         public decimal Preco { get; private set; }
         public int DuracaoEmMinutos { get; private set; }
+        public ICollection<Profissional> Profissionais { get; private set; } = new List<Profissional>();
 
         //EF
         Servico() { }

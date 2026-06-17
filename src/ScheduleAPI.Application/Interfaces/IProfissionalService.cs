@@ -1,4 +1,5 @@
 ﻿using ScheduleAPI.Application.DTOs.Profissional;
+using ScheduleAPI.Application.DTOs.Servico;
 
 namespace ScheduleAPI.Application.Interfaces
 {
@@ -8,6 +9,6 @@ namespace ScheduleAPI.Application.Interfaces
         Task<ProfissionalResponseDto?> ObterPorIdAsync(Guid id);
         Task<ProfissionalResponseDto> CriarAsync(ProfissionalRequestDto dto);
         Task<DisponibilidadeResponseDto> ObterDisponibilidadeAsync(Guid id, DateTime data, int intervaloEmMinutos = 30);
-        //Task<ProfissionalResponseDto> AtualizarAsync(Guid id, ProfissionalResponseDto dto);
+        Task<IEnumerable<ServicoResponseDto>> ObterServicoPorProfissionalAsync(Guid servicoId);
     }
 }

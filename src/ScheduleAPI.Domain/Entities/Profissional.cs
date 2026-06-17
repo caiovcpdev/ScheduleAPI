@@ -16,6 +16,7 @@ namespace ScheduleAPI.Domain.Entities
         public TimeSpan InicioExpediente { get; private set; }
         public TimeSpan FimExpediente { get; private set; }
 
+        public ICollection<Servico> Servicos { get; private set; } = new List<Servico>();
         //EF
         private Profissional() { }
 
@@ -28,6 +29,21 @@ namespace ScheduleAPI.Domain.Entities
             InicioExpediente = inicioExpediente;
             FimExpediente = fimExpediente;
         }
+
+        public void AdicionarServico(Servico servico)
+        {
+            if (servico == null) throw new ArgumentException("Serviço não pode ser nulo");
+            if (!Servicos.Any(s => s.Id == servico.Id))
+                Servicos.Add(servico);
+        }
+
+        public void RemoverServico(Guid servicoId)
+        {
+            var servico = Servicos.FirstOrDefault(s => s.Id == servicoId);
+            if (servico != null) Servicos.Remove(servico);
+        }
+
+
         public bool EstaDisponivelNaHora(TimeSpan horario)
         {
             return horario >= InicioExpediente && horario <= FimExpediente;

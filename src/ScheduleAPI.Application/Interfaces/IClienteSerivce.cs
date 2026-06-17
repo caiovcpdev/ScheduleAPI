@@ -1,4 +1,5 @@
 ﻿using ScheduleAPI.Application.DTOs.Cliente;
+using ScheduleAPI.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace ScheduleAPI.Application.Interfaces
     {
         Task<IEnumerable<ClienteResponseDto>> ObterTodosAsync();
         Task<ClienteResponseDto?> ObterPorIdAsync(Guid id);
+        Task<ClienteResponseDto?> ObterPorEmailAsync(string email);
         Task<ClienteResponseDto> CriarAsync(ClienteRequestDto dto);
         Task<ClienteResponseDto> AtualizarAsync(Guid id, ClienteRequestDto dto);
     }

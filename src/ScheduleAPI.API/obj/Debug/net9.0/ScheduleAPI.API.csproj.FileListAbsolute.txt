@@ -158,7 +158,6 @@ C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\Schedul
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\ScheduleAPI.API.genruntimeconfig.cache
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\ref\ScheduleAPI.API.dll
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\ScheduleAPI.API.sourcelink.json
-C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\ScheduleAPI.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\bin\Debug\net9.0\BouncyCastle.Cryptography.dll
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\bin\Debug\net9.0\MailKit.dll
@@ -172,3 +171,4 @@ C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\bin\Debug\net9.0\Microso
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\bin\Debug\net9.0\MimeKit.dll
 C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\bin\Debug\net9.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\caio\Documents\ScheduleAPI\src\ScheduleAPI.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

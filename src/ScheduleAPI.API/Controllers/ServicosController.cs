@@ -15,15 +15,23 @@ namespace ScheduleAPI.API.Controllers
         public async Task<IActionResult> ObterTodos()
         {
             var servicos = await _service.ObterTodosAsync();
-            return servicos is null ? NotFound() : Ok(servicos);
+            return Ok(servicos);
         }
 
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> ObterPorId(Guid id)
         {
             var servico = await _service.ObterPorIdAsync(id);
-            return servico is null ? NotFound() : Ok(servico);
+            return Ok(servico);
         }
+
+        [HttpGet("{id:guid}/profissionais")]
+        public async Task<IActionResult> ObterProfissionalPorServico(Guid id)
+        {
+            var profissionais = await _service.ObterProfissionalPorServicoAsync(id);
+            return Ok(profissionais);
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> Criar([FromBody] ServicoRequestDto dto)

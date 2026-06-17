@@ -1,4 +1,5 @@
-﻿using ScheduleAPI.Application.DTOs.Servico;
+﻿using ScheduleAPI.Application.DTOs.Profissional;
+using ScheduleAPI.Application.DTOs.Servico;
 using ScheduleAPI.Application.Interfaces;
 using ScheduleAPI.Domain.Entities;
 using ScheduleAPI.Infrastructure.Interfaces;
@@ -34,6 +35,27 @@ namespace ScheduleAPI.Application.Service
             return servicos.Select(ToDto);
         }
 
-        private static ServicoResponseDto ToDto(Servico s) => new(s.Id, s.Nome, s.Descricao, s.Preco, s.DuracaoEmMinutos);
+        public async Task<IEnumerable<ProfissionalResponseDto>> ObterProfissionalPorServicoAsync(Guid profissionalId)
+        {
+            var profissionais = await _repository.ObterProfissionalPorServico(profissionalId);
+            return profissionais.Select(ToProfissionalDto);
+        }
+        
+        //Mappers
+        private static ServicoResponseDto ToDto(Servico s) => new(
+            s.Id,
+            s.Nome,
+            s.Descricao, 
+            s.Preco, 
+            s.DuracaoEmMinutos);
+
+        private static ProfissionalResponseDto ToProfissionalDto(Profissional p) => new(
+            p.Id,
+            p.Nome,
+            p.Email,
+            p.Especialidade,
+            p.InicioExpediente,
+            p.FimExpediente);
+
     }
 }

@@ -30,8 +30,11 @@ namespace ScheduleAPI.Infrastructure.Repositories
 
         public async Task<Cliente?> ObterPorIdAsync(Guid id)
             => await _context.Clientes.FindAsync(id);
-
+        
         public async Task<IEnumerable<Cliente>> ObterTodosAsync()
             => await _context.Clientes.ToListAsync();
+
+        public async Task<Cliente?> ObterPorEmailAsync(string email)
+        => await _context.Clientes.FirstOrDefaultAsync(c => c.Email == email);
     }
 }

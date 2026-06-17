@@ -35,6 +35,15 @@ namespace ScheduleAPI.Infrastructure.Data
                 e.Property(p => p.Email).IsRequired().HasMaxLength(150);
                 e.HasIndex(p => p.Email).IsUnique();
                 e.Property(p => p.Especialidade).IsRequired().HasMaxLength(100);
+
+                e.HasMany(p => p.Servicos)
+                    .WithMany(s => s.Profissionais)
+                    .UsingEntity<Dictionary<string, object>>(
+                        "ProfissionalServico",
+                        x => x.HasOne<Servico>().WithMany().HasForeignKey("ServicoId"),
+                        x => x.HasOne<Profissional>().WithMany().HasForeignKey("ProfissionalId"),
+                        x => { x.HasKey("ProfissionalId", "ServicoId"); }
+                    );
             });
 
             modelBuilder.Entity<Servico>(e =>
