@@ -30,6 +30,17 @@ namespace ScheduleAPI.Domain.Entities
             FimExpediente = fimExpediente;
         }
 
+        public void Atualizar(string nome, string email, string especialidade, TimeSpan inicioExpediente, TimeSpan fimExpediente)
+        {
+            Validar(nome, email, especialidade, inicioExpediente, fimExpediente);
+            Nome = nome;
+            Email = email;
+            Especialidade = especialidade;
+            InicioExpediente = inicioExpediente;
+            FimExpediente = fimExpediente;
+            UpdatedAt = DateTime.Now;
+        }
+
         public void AdicionarServico(Servico servico)
         {
             if (servico == null) throw new ArgumentException("Serviço não pode ser nulo");

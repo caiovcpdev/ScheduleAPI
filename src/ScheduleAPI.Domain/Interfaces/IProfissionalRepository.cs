@@ -10,6 +10,7 @@ namespace ScheduleAPI.Infrastructure.Interfaces
     public interface IProfissionalRepository
     {
         Task<Profissional?> ObterPorIdAsync(Guid id);
+        Task<Profissional?> ObterComServicoAsync(Guid id);
         Task<IEnumerable<Profissional>> ObterTodosAsync();
         Task AdicionarAsync(Profissional profissional);
         Task AtualizarAsync(Profissional profissional);

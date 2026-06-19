@@ -26,6 +26,16 @@ namespace ScheduleAPI.Domain.Entities
             DuracaoEmMinutos = duracaoEmMinutos;
         }
 
+        public void Atualizar(string nome, string descricao, decimal preco, int duracaoEmMinutos )
+        {
+            Validar(nome, preco, duracaoEmMinutos);
+            Nome = nome;
+            Descricao = descricao;
+            Preco = preco;
+            DuracaoEmMinutos = duracaoEmMinutos;
+            UpdatedAt = DateTime.Now;
+        }
+
         private static void Validar(string nome, decimal preco, int duracaoEmMinutos)
         {
             if (string.IsNullOrEmpty(nome)) throw new ArgumentException("O Nome é obrigátório.");

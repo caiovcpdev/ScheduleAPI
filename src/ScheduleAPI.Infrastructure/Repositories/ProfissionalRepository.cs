@@ -2,11 +2,7 @@
 using ScheduleAPI.Domain.Entities;
 using ScheduleAPI.Infrastructure.Data;
 using ScheduleAPI.Infrastructure.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ScheduleAPI.Infrastructure.Repositories
 {
@@ -26,6 +22,13 @@ namespace ScheduleAPI.Infrastructure.Repositories
             _context.Profissionais.Update(profissional);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<Profissional?> ObterComServicoAsync(Guid id)
+            => await _context.Profissionais
+            .Include(p => p.Servicos)
+            .FirstOrDefaultAsync(p => p.Id == id);
+                
+        
 
         public async Task<Profissional?> ObterPorIdAsync(Guid id)
             => await _context.Profissionais.FindAsync(id);

@@ -2,11 +2,7 @@
 using ScheduleAPI.Domain.Entities;
 using ScheduleAPI.Infrastructure.Data;
 using ScheduleAPI.Infrastructure.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ScheduleAPI.Infrastructure.Repositories
 {
@@ -19,6 +15,12 @@ namespace ScheduleAPI.Infrastructure.Repositories
         {
             await _context.Servicos.AddAsync(servico);
             await _context.SaveChangesAsync();  
+        }
+
+        public async Task AtualizarAsync(Servico servico)
+        {
+            _context.Servicos.Update(servico);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Servico?> ObterPorIdAsync(Guid id)

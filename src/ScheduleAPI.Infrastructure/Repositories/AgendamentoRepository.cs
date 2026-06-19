@@ -26,8 +26,6 @@ namespace ScheduleAPI.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-
-
         public async Task<Agendamento?> ObterPorIdAsync(Guid id)
             => await _context.Agendamentos
                 .Include(a => a.Cliente)
@@ -36,11 +34,14 @@ namespace ScheduleAPI.Infrastructure.Repositories
                 .FirstOrDefaultAsync(a => a.Id == id);
 
         public async Task<IEnumerable<Agendamento>> ObterTodosAsync()
-            => await _context.Agendamentos
+        {
+            var result = await _context.Agendamentos
                 .Include(a => a.Cliente)
                 .Include(a => a.Profissional)
                 .Include(a => a.Servico)
                 .ToListAsync();
+            return result;
+        } 
 
         public async Task<IEnumerable<Agendamento>> ObterPorProfissionalAsync(Guid profissionalId, DateTime data)
             => await _context.Agendamentos

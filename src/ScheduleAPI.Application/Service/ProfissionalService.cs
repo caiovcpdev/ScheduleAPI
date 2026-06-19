@@ -16,11 +16,13 @@ namespace ScheduleAPI.Application.Service
     {
         private readonly IProfissionalRepository _repository;
         private readonly IAgendamentoRepository _agendamentoRepository;
+        private readonly IServicoRepository _servicoRepository;
 
-        public ProfissionalService(IProfissionalRepository repository, IAgendamentoRepository agendamentoRepository) 
+        public ProfissionalService(IProfissionalRepository repository, IAgendamentoRepository agendamentoRepository, IServicoRepository servicoRepository) 
         { 
             _repository = repository; 
             _agendamentoRepository = agendamentoRepository;
+            _servicoRepository = servicoRepository;
         } 
 
         public async Task<ProfissionalResponseDto> CriarAsync(ProfissionalRequestDto dto)
@@ -88,8 +90,28 @@ namespace ScheduleAPI.Application.Service
             var servicos = await _repository.ObterServicoPorProfissional(servicoId);
             return servicos.Select(ToServicoDto);
         }
+        public async Task<ProfissionalResponseDto> AtualizarAsync(Guid id, ProfissionalRequestDto dto)
+        {
+            var profissional = await _repository.ObterPorIdAsync(id) ?? throw new KeyNotFoundException($"Profissional com id {id} não encontrado.");
 
+            profissional.Atualizar(dto.Nome, dto.Email, dto.Especialidade, dto.InicioExpediente, dto.FimExpediente);
+            await _repository.AtualizarAsync(profissional);
+            return ToDto(profissional);
+        }
+
+        public async Task VincularServicoAsync(Guid profissionalId, Guid servicoId)
+        {
+            var profissional = await _repository.ObterComServicoAsync(profissionalId) ?? throw new KeyNotFoundException("Profissional não encontrado.");
+            var servico = await _servicoRepository.ObterPorIdAsync(servicoId) ?? throw new KeyNotFoundException("Serviço não encontrado.");
+
+            profissional.AdicionarServico(servico);
+
+            await _repository.AtualizarAsync(profissional);
+
+        }
         private static ServicoResponseDto ToServicoDto(Servico s) => new(s.Id, s.Nome, s.Descricao, s.Preco, s.DuracaoEmMinutos);
         private static ProfissionalResponseDto ToDto(Profissional p) => new(p.Id, p.Nome, p.Email, p.Especialidade, p.InicioExpediente, p.FimExpediente);
+
+      
     }
 }

@@ -1,4 +1,5 @@
-﻿using ScheduleAPI.Application.DTOs.Profissional;
+﻿using ScheduleAPI.Application.DTOs.Cliente;
+using ScheduleAPI.Application.DTOs.Profissional;
 using ScheduleAPI.Application.DTOs.Servico;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace ScheduleAPI.Application.Interfaces
         Task<IEnumerable<ServicoResponseDto>> ObterTodosAsync();
         Task<ServicoResponseDto?> ObterPorIdAsync(Guid id);
         Task<ServicoResponseDto> CriarAsync(ServicoRequestDto dto);
-
+        Task<ServicoResponseDto> AtualizarAsync(Guid id, ServicoRequestDto dto);
         Task<IEnumerable<ProfissionalResponseDto>> ObterProfissionalPorServicoAsync(Guid profissionalId);
     }
 }

@@ -9,7 +9,7 @@ namespace ScheduleAPI.Domain.Entities
     public class Cliente : BaseEntity
     {
         public string Nome { get; private set; } = string.Empty;
-        public string Email { get; private set; } = string.Empty;
+        public string Email { get; private set; } = string.Empty; 
         public string Telefone { get; private set; } = string.Empty;
 
         // O EF Precisa de construtor vazio

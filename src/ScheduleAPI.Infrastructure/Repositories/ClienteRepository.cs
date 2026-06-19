@@ -35,6 +35,6 @@ namespace ScheduleAPI.Infrastructure.Repositories
             => await _context.Clientes.ToListAsync();
 
         public async Task<Cliente?> ObterPorEmailAsync(string email)
-        => await _context.Clientes.FirstOrDefaultAsync(c => c.Email == email);
+            => await _context.Clientes.FirstOrDefaultAsync(c => c.Email == email);
     }
 }

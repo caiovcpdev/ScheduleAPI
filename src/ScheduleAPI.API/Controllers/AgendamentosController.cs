@@ -42,7 +42,7 @@ namespace ScheduleAPI.API.Controllers
         [HttpPatch("{id:guid}/cancelar")]
         public async Task<IActionResult> Cancelar(Guid id)
         {
-            await _service.ConfirmarAsync(id);
+            await _service.CancelarAsync(id);
             return NoContent();
         }
 

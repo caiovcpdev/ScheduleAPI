@@ -40,7 +40,15 @@ namespace ScheduleAPI.Application.Service
             var profissionais = await _repository.ObterProfissionalPorServico(profissionalId);
             return profissionais.Select(ToProfissionalDto);
         }
-        
+        public async Task<ServicoResponseDto> AtualizarAsync(Guid id, ServicoRequestDto dto)
+        {
+            var servico = await _repository.ObterPorIdAsync(id) ?? throw new KeyNotFoundException($"Servico com id {id} não encontrado.");
+
+            servico.Atualizar(dto.Nome, dto.Descricao, dto.Preco, dto.DuracaoEmMinutos);
+            await _repository.AtualizarAsync(servico);
+            return ToDto(servico);
+        }
+
         //Mappers
         private static ServicoResponseDto ToDto(Servico s) => new(
             s.Id,

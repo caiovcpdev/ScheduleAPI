@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ScheduleAPI.Application.DTOs.Cliente;
 using ScheduleAPI.Application.DTOs.Servico;
 using ScheduleAPI.Application.Interfaces;
 
@@ -32,12 +33,18 @@ namespace ScheduleAPI.API.Controllers
             return Ok(profissionais);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> Criar([FromBody] ServicoRequestDto dto)
         {
             var servico = await _service.CriarAsync(dto);
             return CreatedAtAction(nameof(ObterPorId), new { id = servico.Id}, servico);
+        }
+
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> Atualizar(Guid id, [FromBody] ServicoRequestDto dto)
+        {
+            var servico = await _service.AtualizarAsync(id, dto);
+            return Ok(servico);
         }
     }
 }

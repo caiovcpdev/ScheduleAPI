@@ -38,11 +38,25 @@ namespace ScheduleAPI.API.Controllers
             var disponibilidade = await _service.ObterDisponibilidadeAsync(id, data, intervalo);
             return Ok(disponibilidade);
         }
-
+        [HttpPost]
         public async Task<IActionResult> Criar([FromBody] ProfissionalRequestDto dto)
         {
             var profissional = await _service.CriarAsync(dto);
             return CreatedAtAction(nameof(ObterPorId), new { id = profissional.Id}, profissional);
+        }
+
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> Atualizar(Guid id, [FromBody] ProfissionalRequestDto dto)
+        {
+            var profissional = await _service.AtualizarAsync(id, dto);
+            return Ok(profissional);
+        }
+
+        [HttpPost("{id:guid}/servicos/{servicoId:guid}")]
+        public async Task<IActionResult> VincularServico(Guid id, Guid servicoId)
+        {
+            await _service.VincularServicoAsync(id, servicoId);
+            return NoContent();
         }
     }
 }
