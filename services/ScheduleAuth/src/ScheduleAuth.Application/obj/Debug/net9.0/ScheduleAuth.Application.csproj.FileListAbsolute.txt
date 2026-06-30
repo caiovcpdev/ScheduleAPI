@@ -1,0 +1,16 @@
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Application\bin\Debug\net9.0\ScheduleAuth.Application.deps.json
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Application\bin\Debug\net9.0\ScheduleAuth.Application.dll
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Application\bin\Debug\net9.0\ScheduleAuth.Application.pdb
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Application\bin\Debug\net9.0\ScheduleAuth.Domain.dll
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Application\bin\Debug\net9.0\ScheduleAuth.Domain.pdb
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Application\obj\Debug\net9.0\ScheduleAuth.Application.csproj.AssemblyReference.cache
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Application\obj\Debug\net9.0\ScheduleAuth.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Application\obj\Debug\net9.0\ScheduleAuth.Application.AssemblyInfoInputs.cache
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Application\obj\Debug\net9.0\ScheduleAuth.Application.AssemblyInfo.cs
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Application\obj\Debug\net9.0\ScheduleAuth.Application.csproj.CoreCompileInputs.cache
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Application\obj\Debug\net9.0\ScheduleAuth.Application.sourcelink.json
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Application\obj\Debug\net9.0\Schedule.FC7AFBB0.Up2Date
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Application\obj\Debug\net9.0\ScheduleAuth.Application.dll
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Application\obj\Debug\net9.0\refint\ScheduleAuth.Application.dll
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Application\obj\Debug\net9.0\ScheduleAuth.Application.pdb
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Application\obj\Debug\net9.0\ref\ScheduleAuth.Application.dll

@@ -1,0 +1,12 @@
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Domain\bin\Debug\net9.0\ScheduleAuth.Domain.deps.json
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Domain\bin\Debug\net9.0\ScheduleAuth.Domain.dll
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Domain\bin\Debug\net9.0\ScheduleAuth.Domain.pdb
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Domain\obj\Debug\net9.0\ScheduleAuth.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Domain\obj\Debug\net9.0\ScheduleAuth.Domain.AssemblyInfoInputs.cache
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Domain\obj\Debug\net9.0\ScheduleAuth.Domain.AssemblyInfo.cs
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Domain\obj\Debug\net9.0\ScheduleAuth.Domain.csproj.CoreCompileInputs.cache
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Domain\obj\Debug\net9.0\ScheduleAuth.Domain.sourcelink.json
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Domain\obj\Debug\net9.0\ScheduleAuth.Domain.dll
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Domain\obj\Debug\net9.0\refint\ScheduleAuth.Domain.dll
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Domain\obj\Debug\net9.0\ScheduleAuth.Domain.pdb
+C:\Users\caio\Documents\ScheduleAPI\services\ScheduleAuth\src\ScheduleAuth.Domain\obj\Debug\net9.0\ref\ScheduleAuth.Domain.dll

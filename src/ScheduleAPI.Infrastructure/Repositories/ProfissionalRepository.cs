@@ -28,8 +28,6 @@ namespace ScheduleAPI.Infrastructure.Repositories
             .Include(p => p.Servicos)
             .FirstOrDefaultAsync(p => p.Id == id);
                 
-        
-
         public async Task<Profissional?> ObterPorIdAsync(Guid id)
             => await _context.Profissionais.FindAsync(id);
 
@@ -38,9 +36,6 @@ namespace ScheduleAPI.Infrastructure.Repositories
             var result = await _context.Servicos
             .Where(s => s.Profissionais.Any(p => p.Id == id))
             .ToListAsync();
-
-            return result;
-        }
 
         public async Task<IEnumerable<Profissional>> ObterTodosAsync()
             => await _context.Profissionais.ToListAsync();
