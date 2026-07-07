@@ -19,7 +19,7 @@ namespace ScheduleAuth.Domain.Entities
 
         public bool EstaExpirado => DateTime.Now >= ExpireAt;
         public bool EstaRevogado => RevokedAt.HasValue;
-        public bool EstaAtivo => !EstaExpirado && EstaRevogado;
+        public bool EstaAtivo => !EstaExpirado && !EstaRevogado;
         
         //EF
         private RefreshToken() { }

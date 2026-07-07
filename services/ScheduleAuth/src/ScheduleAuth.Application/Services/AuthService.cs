@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
+using ScheduleAuth.Application.DTOs.Auth.Internal;
 using ScheduleAuth.Application.DTOs.Auth.Login;
 using ScheduleAuth.Application.DTOs.Auth.Refresh;
 using ScheduleAuth.Application.DTOs.Auth.Usuario;
@@ -55,6 +56,24 @@ namespace ScheduleAuth.Application.Services
             return new UsuarioResponse(usuario.Id, usuario.Nome, usuario.Email, usuario.Role.ToString(), usuario.ProfissionalId);
         }
 
+        public async Task<CriarUsuarioParaProfissionalRespose> CriarUsuarioParaProfissionalAsync(CriarUsuarioParaProfissionalRequest request)
+        {
+            var senhaProvisoria = GerarSenhaProvisoria();
+            var passwordHash = _passwordHasher.HashPassword(null!, senhaProvisoria);    
+
+            var usuario = Usuario.CriarParaProfissional(
+                request.Nome,
+                request.Email, 
+                passwordHash, 
+                request.ProfissionalId);
+
+            await _usuarioRepository.AdicionarAsync(usuario);
+
+            return new CriarUsuarioParaProfissionalRespose(
+                usuario.Id,
+                senhaProvisoria);
+        }
+
         public async Task<LoginResponse> LoginAsync(LoginRequest request)
         {
             var usuario = await _usuarioRepository.ObterPorEmailAsync(request.Email.Trim());
@@ -99,7 +118,7 @@ namespace ScheduleAuth.Application.Services
             if (tokenExistente is null || !tokenExistente.EstaAtivo)
                 throw new UnauthorizedAccessException("Refresh token invalido ou expirado");
 
-            var usuario = await _usuarioRepository.ObterPorIdAsync(tokenExistente.Usuario.Id);
+            var usuario = await _usuarioRepository.ObterPorIdAsync(tokenExistente.UsuarioId );
 
             if (usuario is null || !usuario.Ativo)
                 throw new UnauthorizedAccessException("Usuário não encontrado ou inativo");
@@ -122,6 +141,21 @@ namespace ScheduleAuth.Application.Services
             await _refreshTokenRepository.AdicionarAsync(refreshToken);
 
             return refreshToken;
+        }
+        public async Task<UsuarioResponse> MudaSenhaAsync(UsuarioRequest request)
+        {
+            var usuario = await _usuarioRepository.ObterPorEmailAsync(request.Email) ?? throw new KeyNotFoundException($"Cliente com Email {request.Email} não encontrado.");
+            usuario.AtualizarSenha(request.Senha);
+            await _usuarioRepository.AtualizarAsync(usuario);
+            return new UsuarioResponse {usuario.Id, usuario.Nome, usuario.Email, usuario.Role, usuario.ProfissionalId} ;
+
+            throw new NotImplementedException();
+        }
+
+        private static string GerarSenhaProvisoria()
+        {
+            var bytes = System.Security.Cryptography.RandomNumberGenerator.GetBytes(9);
+            return Convert.ToBase64String(bytes)[..12].Replace('+', 'A').Replace('/', 'B');
         }
     }
 }

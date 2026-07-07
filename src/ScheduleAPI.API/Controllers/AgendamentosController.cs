@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ScheduleAPI.Application.DTOs.Agendamento;
 using ScheduleAPI.Application.Interfaces;
+using ScheduleAPI.Application.Templates;
+using ScheduleAPI.Infrastructure.Interfaces;
 
 namespace ScheduleAPI.API.Controllers
 {
@@ -46,5 +48,30 @@ namespace ScheduleAPI.API.Controllers
             return NoContent();
         }
 
+        [HttpGet("{id:guid}/send-email")] //apenas para testes
+        public async Task<IActionResult> SendEmail([FromServices] IAgendamentoRepository agendamentoRepo, [FromServices] IEmailService emailService, Guid id)
+        {
+            var agendamento = await _service.ObterPorIdAsync(id);
+
+            if (agendamento == null)
+                return BadRequest("Nenhum agendamento encontrado.");
+
+            var corpo = EmailLembreteTemplate.Gerar(
+                agendamento.ClienteNome,
+                agendamento.ProfissionalNome,
+                agendamento.ServicoNome,
+                agendamento.DataHoraInicio,
+                agendamento.ServicoPreco
+            );
+
+            await emailService.EnviarAsync(
+                "natalaiadmaias@gmail.com",
+                "Caio",
+                "Teste Template",
+                corpo
+            );
+
+            return Ok("Email enviado");
+        }
     }   
 }

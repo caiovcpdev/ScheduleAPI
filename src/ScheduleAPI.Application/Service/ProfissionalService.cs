@@ -1,14 +1,9 @@
 ﻿using ScheduleAPI.Application.DTOs.Profissional;
 using ScheduleAPI.Application.DTOs.Servico;
 using ScheduleAPI.Application.Interfaces;
+using ScheduleAPI.Application.Interfaces.Auth;
 using ScheduleAPI.Domain.Entities;
 using ScheduleAPI.Infrastructure.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ScheduleAPI.Application.Service
 {
@@ -17,12 +12,15 @@ namespace ScheduleAPI.Application.Service
         private readonly IProfissionalRepository _repository;
         private readonly IAgendamentoRepository _agendamentoRepository;
         private readonly IServicoRepository _servicoRepository;
-
-        public ProfissionalService(IProfissionalRepository repository, IAgendamentoRepository agendamentoRepository, IServicoRepository servicoRepository) 
+        private readonly IScheduleAuthClient _scheduleAuthClient;
+        private readonly IEmailService _emailService;
+        public ProfissionalService(IProfissionalRepository repository, IAgendamentoRepository agendamentoRepository, IServicoRepository servicoRepository, IScheduleAuthClient scheduleAuthClient, IEmailService emailService) 
         { 
             _repository = repository; 
             _agendamentoRepository = agendamentoRepository;
             _servicoRepository = servicoRepository;
+            _scheduleAuthClient = scheduleAuthClient;
+            _emailService = emailService;
         } 
 
         public async Task<ProfissionalResponseDto> CriarAsync(ProfissionalRequestDto dto)
@@ -30,6 +28,36 @@ namespace ScheduleAPI.Application.Service
             var profissional = new Profissional(dto.Nome, dto.Email, dto.Especialidade, dto.InicioExpediente, dto.FimExpediente);
 
             await _repository.AdicionarAsync(profissional);
+
+            //Avisar ao AUTH que um profissional foi criado para criar o usuário correspondente e vinculado.
+            try
+            {
+                var senhaProvisoria = await _scheduleAuthClient
+                    .CriarUsuarioParaProfissionalAsync(profissional.Id, profissional.Nome, profissional.Email);
+
+                await _emailService.EnviarAsync(
+                    destinatario: profissional.Email,
+                    nome: profissional.Nome,
+                    assunto: "Bem-vindo ao ScheduleAPI — suas credenciais de acesso",
+                    corpo: $"""
+                        Olá, {profissional.Nome}!
+
+                        Sua conta foi criada no ScheduleAPI.
+
+                        E-mail: {profissional.Email}
+                        Senha provisória: {senhaProvisoria}
+
+                        Recomendamos que você troque sua senha após o primeiro login.
+                        """);
+            }
+            catch (Exception ex)
+            {
+                // O profissional foi criado mas o usuário não — isso precisa ser investigado
+                // Por ora: loga o erro e lança uma exceção clara pra quem chamou
+                throw new InvalidOperationException(
+                    $"Profissional criado, mas houve falha ao criar usuário no ScheduleAuth: {ex.Message}", ex);
+            }
+
             return ToDto(profissional);
         }
 
@@ -38,13 +66,11 @@ namespace ScheduleAPI.Application.Service
             var profissional = await _repository.ObterPorIdAsync(id);
             return profissional is null ? null : ToDto(profissional);
         }
-
         public async Task<IEnumerable<ProfissionalResponseDto>> ObterTodosAsync()
         {
             var profissionais = await _repository.ObterTodosAsync();
             return profissionais.Select(ToDto);
         }
-
         public async Task<DisponibilidadeResponseDto> ObterDisponibilidadeAsync(Guid profissionalId, DateTime data, int intervaloEmMinutos = 30)
         {
             //Valida se o profissional existe
@@ -98,7 +124,6 @@ namespace ScheduleAPI.Application.Service
             await _repository.AtualizarAsync(profissional);
             return ToDto(profissional);
         }
-
         public async Task VincularServicoAsync(Guid profissionalId, Guid servicoId)
         {
             var profissional = await _repository.ObterComServicoAsync(profissionalId) ?? throw new KeyNotFoundException("Profissional não encontrado.");
@@ -111,7 +136,5 @@ namespace ScheduleAPI.Application.Service
         }
         private static ServicoResponseDto ToServicoDto(Servico s) => new(s.Id, s.Nome, s.Descricao, s.Preco, s.DuracaoEmMinutos);
         private static ProfissionalResponseDto ToDto(Profissional p) => new(p.Id, p.Nome, p.Email, p.Especialidade, p.InicioExpediente, p.FimExpediente);
-
-      
     }
 }

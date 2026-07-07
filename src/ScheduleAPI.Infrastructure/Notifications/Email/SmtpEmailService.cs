@@ -5,7 +5,7 @@ using MimeKit;
 using ScheduleAPI.Application.Interfaces;
 
 
-namespace ScheduleAPI.Infrastructure.Email
+namespace ScheduleAPI.Infrastructure.Notifications.Email
 {
     public class SmtpEmailService : IEmailService
     {
@@ -25,7 +25,9 @@ namespace ScheduleAPI.Infrastructure.Email
 
             using var client = new SmtpClient();
 
-            await client.ConnectAsync(_settings.Host, _settings.Port, _settings.UseSsl ? SecureSocketOptions.StartTls : SecureSocketOptions.None);
+            client.ServerCertificateValidationCallback = (sender, certificate, chain, errors) => true;
+
+            await client.ConnectAsync(_settings.Host, _settings.Port, SecureSocketOptions.StartTls);
 
 
             await client.AuthenticateAsync(_settings.Username, _settings.Password);

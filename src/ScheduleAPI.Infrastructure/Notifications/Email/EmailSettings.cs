@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ScheduleAPI.Infrastructure.Email
+namespace ScheduleAPI.Infrastructure.Notifications.Email
 {
     public class EmailSettings
     {

@@ -27,10 +27,9 @@ namespace ScheduleAPI.Infrastructure.Repositories
             => await _context.Servicos.FindAsync(id);
 
         public async Task<List<Profissional>> ObterProfissionalPorServico(Guid servicoId)
-        {
-            return await _context.Profissionais
-           .Where(p => p.Servicos.Any(s => s.Id == servicoId))
-           .ToListAsync();
+            => await _context.Profissionais
+                .Where(p => p.Servicos.Any(s => s.Id == servicoId))
+                .ToListAsync();
 
         public async Task<IEnumerable<Servico>> ObterTodosAsync()
             => await _context.Servicos.ToListAsync();

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ScheduleAPI.Application.DTOs.Cliente;
 using ScheduleAPI.Application.DTOs.Servico;
 using ScheduleAPI.Application.Interfaces;
 

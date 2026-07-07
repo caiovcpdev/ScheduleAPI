@@ -25,17 +25,16 @@ namespace ScheduleAPI.Infrastructure.Repositories
 
         public async Task<Profissional?> ObterComServicoAsync(Guid id)
             => await _context.Profissionais
-            .Include(p => p.Servicos)
-            .FirstOrDefaultAsync(p => p.Id == id);
-                
+                .Include(p => p.Servicos)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
         public async Task<Profissional?> ObterPorIdAsync(Guid id)
             => await _context.Profissionais.FindAsync(id);
 
         public async Task<List<Servico>> ObterServicoPorProfissional(Guid id)
-        {
-            var result = await _context.Servicos
-            .Where(s => s.Profissionais.Any(p => p.Id == id))
-            .ToListAsync();
+             => await _context.Servicos
+                .Where(s => s.Profissionais.Any(p => p.Id == id))
+                .ToListAsync();
 
         public async Task<IEnumerable<Profissional>> ObterTodosAsync()
             => await _context.Profissionais.ToListAsync();

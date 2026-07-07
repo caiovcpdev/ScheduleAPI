@@ -36,7 +36,7 @@ namespace ScheduleAPI.Application.Templates
                           <h2>🗓️ Lembrete de Agendamento</h2>
                         </div>
                         <p>Olá, <strong>{nomeCliente}</strong>!</p>
-                        <p>Este é um lembrete do seu agendamento para <strong>amanhã</strong>:</p>
+                        <p>Este é um lembrete do seu agendamento para <strong>{dataHora:dd/MM/yyyy}</strong>:</p>
 
                         <div class=""info"">
                           <div class=""label"">Profissional</div>

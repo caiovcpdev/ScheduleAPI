@@ -49,5 +49,12 @@ namespace ScheduleAuth.API.Controllers
             var result = await _authService.CriarUsuarioAsync(request);
             return CreatedAtAction(nameof(CriarUsuario), new { id = result.Id }, result);
         }
+
+        [HttpPost("muda-senha")]
+        public async Task<ActionResult<UsuarioResponse>> MudaSenha([FromBody] UsuarioRequest request)
+        {
+            var result = await _authService.(request);
+            return Ok(result);
+        }
     }
 }

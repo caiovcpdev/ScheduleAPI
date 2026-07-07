@@ -1,12 +1,8 @@
 ﻿using ScheduleAPI.Application.DTOs.Agendamento;
 using ScheduleAPI.Application.Interfaces;
+using ScheduleAPI.Application.Templates;
 using ScheduleAPI.Domain.Entities;
 using ScheduleAPI.Infrastructure.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ScheduleAPI.Application.Service
 {
@@ -16,17 +12,22 @@ namespace ScheduleAPI.Application.Service
         private readonly IClienteRepository _clienteRepository;
         private readonly IProfissionalRepository _profissionalRepository;
         private readonly IServicoRepository _servicoRepository;
-
+        private readonly ITelegramService _telegramService;
+        private readonly IEmailService _emailService;
         public AgendamentoService(
             IAgendamentoRepository agendamentoRepository,
             IProfissionalRepository profissionalRepository,
             IServicoRepository servicoRepository,
-            IClienteRepository clienteRepository)
+            IClienteRepository clienteRepository,
+            ITelegramService telegramService,
+            IEmailService emailService)
         {
             _agendamentoRepository = agendamentoRepository;
             _profissionalRepository = profissionalRepository;
             _servicoRepository = servicoRepository;
             _clienteRepository = clienteRepository;
+            _telegramService = telegramService;
+            _emailService = emailService;
         }
 
         public async Task CancelarAsync(Guid id)
@@ -43,8 +44,26 @@ namespace ScheduleAPI.Application.Service
 
             agendamento.Confirmar();
             await _agendamentoRepository.AtualizarAsync(agendamento);
-        }
+            
+            await _telegramService.EnviarMensagemAsync( $"✨ Olá {agendamento.Profissional.Nome}! ✨\n\n" +
+                                                        $"✅ Seu agendamento foi confirmado!\n\n" +
+                                                        $"👩‍⚕️ Cliente: {agendamento.Cliente.Nome}\n" +
+                                                        $"🕒 Horário: {agendamento.DataHoraInicio:dd/MM/yyyy HH:mm}\n\n" +
+                                                        $"📍 Fique atento. Até breve!");
 
+            var corpo = EmailLembreteTemplate.Gerar(
+                       agendamento.Cliente.Nome,
+                       agendamento.Profissional.Nome,
+                       agendamento.Servico.Nome,
+                       agendamento.DataHoraInicio,
+                       agendamento.Servico.Preco);
+
+            await _emailService.EnviarAsync(
+                agendamento.Cliente.Email,
+                agendamento.Cliente.Nome,
+                "Lembrete para o agendamento",
+                corpo);
+        }
         public async Task<AgendamentoResponseDto> CriarAsync(AgendamentoRequestDto dto)
         {
             //1. Valida se Cliente, Profissional e Serviço existem

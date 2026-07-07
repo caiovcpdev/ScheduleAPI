@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ScheduleAPI.Application.DTOs.Profissional;
 using ScheduleAPI.Application.Interfaces;
 
@@ -6,6 +7,7 @@ namespace ScheduleAPI.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class ProfissionaisController : ControllerBase
     {
         private readonly IProfissionalService _service;
@@ -39,6 +41,7 @@ namespace ScheduleAPI.API.Controllers
             return Ok(disponibilidade);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")] //Apenas usuários com a role "Admin" podem criar profissionais
         public async Task<IActionResult> Criar([FromBody] ProfissionalRequestDto dto)
         {
             var profissional = await _service.CriarAsync(dto);
@@ -46,6 +49,7 @@ namespace ScheduleAPI.API.Controllers
         }
 
         [HttpPut("{id:guid}")]
+        [Authorize(Roles = "Admin")] //Apenas usuários com a role "Admin" podem atualizar profissionais
         public async Task<IActionResult> Atualizar(Guid id, [FromBody] ProfissionalRequestDto dto)
         {
             var profissional = await _service.AtualizarAsync(id, dto);
@@ -53,6 +57,7 @@ namespace ScheduleAPI.API.Controllers
         }
 
         [HttpPost("{id:guid}/servicos/{servicoId:guid}")]
+        [Authorize(Roles = "Admin")] // só Admin vincula serviço
         public async Task<IActionResult> VincularServico(Guid id, Guid servicoId)
         {
             await _service.VincularServicoAsync(id, servicoId);
