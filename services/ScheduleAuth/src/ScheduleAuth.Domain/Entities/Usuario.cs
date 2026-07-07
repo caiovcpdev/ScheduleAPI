@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,6 +40,16 @@ namespace ScheduleAuth.Domain.Entities
 
         public static Usuario CriarParaProfissional(string nome, string email, string passwordHash, Guid profissionalId)
             => new(nome, email, passwordHash, RoleUsuario.Profissional, profissionalId);
+
+        public void Atualizar(string nome, string email, RoleUsuario role, Guid? profissionalId, string senha)
+        {
+            Validar(nome, email, role, profissionalId);
+            Nome = nome;
+            Email = email;
+            Role = role;
+            ProfissionalId = profissionalId;
+            AtualizarSenha(senha);
+        }
 
         public void AtualizarSenha(string novaPasswordHash)
         {

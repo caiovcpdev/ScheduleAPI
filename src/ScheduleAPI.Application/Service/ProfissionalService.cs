@@ -38,7 +38,7 @@ namespace ScheduleAPI.Application.Service
                 await _emailService.EnviarAsync(
                     destinatario: profissional.Email,
                     nome: profissional.Nome,
-                    assunto: "Bem-vindo ao ScheduleAPI — suas credenciais de acesso",
+                    assunto: "Bem-vindo ao Atelier — suas credenciais de acesso",
                     corpo: $"""
                         Olá, {profissional.Nome}!
 
@@ -47,7 +47,7 @@ namespace ScheduleAPI.Application.Service
                         E-mail: {profissional.Email}
                         Senha provisória: {senhaProvisoria}
 
-                        Recomendamos que você troque sua senha após o primeiro login.
+                        Recomendamos que você troque sua senha após o primeiro login em: http://localhost:8080/mudasenha
                         """);
             }
             catch (Exception ex)

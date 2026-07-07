@@ -13,6 +13,7 @@ namespace ScheduleAuth.Application.Interfaces
         Task LogoutAsync(string refreshToken);
         Task<CriarUsuarioParaProfissionalRespose> CriarUsuarioParaProfissionalAsync(CriarUsuarioParaProfissionalRequest request);
         Task<UsuarioResponse> CriarUsuarioAsync(UsuarioRequest request);// admin cria qualquer usuário manualmente
-        Task<UsuarioResponse> MudaSenhaAsync(UsuarioRequest request);  
+        Task<UsuarioResponse> MudaSenhaAsync(LoginRequest request);
+        Task<UsuarioResponse> AtualizarAsync(UsuarioRequest request);
     }
 }

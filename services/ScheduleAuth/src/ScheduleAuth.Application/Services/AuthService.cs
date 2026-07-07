@@ -142,14 +142,50 @@ namespace ScheduleAuth.Application.Services
 
             return refreshToken;
         }
-        public async Task<UsuarioResponse> MudaSenhaAsync(UsuarioRequest request)
+        public async Task<UsuarioResponse> MudaSenhaAsync(LoginRequest request)
         {
             var usuario = await _usuarioRepository.ObterPorEmailAsync(request.Email) ?? throw new KeyNotFoundException($"Cliente com Email {request.Email} não encontrado.");
-            usuario.AtualizarSenha(request.Senha);
-            await _usuarioRepository.AtualizarAsync(usuario);
-            return new UsuarioResponse {usuario.Id, usuario.Nome, usuario.Email, usuario.Role, usuario.ProfissionalId} ;
 
-            throw new NotImplementedException();
+            usuario.AtualizarSenha(_passwordHasher.HashPassword(usuario, request.Senha));
+            
+            await _usuarioRepository.AtualizarAsync(usuario);
+
+            return new UsuarioResponse
+            (
+                usuario.Id,
+                usuario.Nome,
+                usuario.Email,
+                usuario.Role.ToString(),
+                usuario.ProfissionalId
+            );
+        }
+
+        public async Task<UsuarioResponse> AtualizarAsync(UsuarioRequest request)
+        {
+            var usuario = await _usuarioRepository.ObterPorEmailAsync(request.Email) ?? throw new KeyNotFoundException($"Cliente com Email {request.Email} não encontrado.");
+            
+            if (!Enum.TryParse<RoleUsuario>(request.Role, ignoreCase: true, out var role))
+                throw new ArgumentException("Role inválida.");
+
+            usuario.Atualizar
+            (
+                request.Nome, 
+                request.Email,
+                role,
+                request.ProfissionalId,
+                request.Senha is not null ? _passwordHasher.HashPassword(usuario, request.Senha) : usuario.PasswordHash
+            );
+            
+            await _usuarioRepository.AtualizarAsync(usuario);
+            
+            return new UsuarioResponse
+            (
+                usuario.Id,
+                usuario.Nome,
+                usuario.Email,
+                usuario.Role.ToString(),
+                usuario.ProfissionalId
+            );
         }
 
         private static string GerarSenhaProvisoria()

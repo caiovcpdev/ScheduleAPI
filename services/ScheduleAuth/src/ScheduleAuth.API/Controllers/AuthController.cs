@@ -4,7 +4,6 @@ using ScheduleAuth.Application.DTOs.Auth.Login;
 using ScheduleAuth.Application.DTOs.Auth.Refresh;
 using ScheduleAuth.Application.DTOs.Auth.Usuario;
 using ScheduleAuth.Application.Interfaces;
-using ScheduleAuth.Application.Services;
 
 namespace ScheduleAuth.API.Controllers
 {
@@ -43,6 +42,14 @@ namespace ScheduleAuth.API.Controllers
             return NoContent();
         }
 
+        [HttpPost("muda-senha")]
+        [AllowAnonymous]
+        public async Task<ActionResult<UsuarioResponse>> MudaSenha([FromBody] LoginRequest request)
+        {
+            var result = await _authService.MudaSenhaAsync(request);
+            return Ok(result);
+        }
+
         [HttpPost("usuarios")]
         public async Task<ActionResult<UsuarioResponse>> CriarUsuario([FromBody] UsuarioRequest request)
         {
@@ -50,11 +57,11 @@ namespace ScheduleAuth.API.Controllers
             return CreatedAtAction(nameof(CriarUsuario), new { id = result.Id }, result);
         }
 
-        [HttpPost("muda-senha")]
-        public async Task<ActionResult<UsuarioResponse>> MudaSenha([FromBody] UsuarioRequest request)
+        [HttpPut("atualizar")]
+        public async Task<IActionResult> Atualizar([FromBody] UsuarioRequest request)
         {
-            var result = await _authService.(request);
-            return Ok(result);
+            var cliente = await _authService.AtualizarAsync(request);
+            return Ok(cliente);
         }
     }
 }

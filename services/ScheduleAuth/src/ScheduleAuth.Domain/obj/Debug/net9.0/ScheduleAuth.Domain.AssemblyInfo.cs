@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ScheduleAuth.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1aa7ab8b61b5f7532e4cb8c6c22529efc3e8fa97")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ba0553b050ab894dd568d1527eb05cd701974237")]
 [assembly: System.Reflection.AssemblyProductAttribute("ScheduleAuth.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ScheduleAuth.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
